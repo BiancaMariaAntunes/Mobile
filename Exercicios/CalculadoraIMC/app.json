@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fundamentos2",
-    "slug": "fundamentos2",
+    "name": "CalculadoraIMC",
+    "slug": "CalculadoraIMC",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

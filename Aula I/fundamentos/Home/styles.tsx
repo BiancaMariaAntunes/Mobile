@@ -41,5 +41,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop:24,
     gap: 10
+    },
+    listEmpty :{
+        color: '#fff',
+        fontSize:14,
+        textAlign: 'center'
     }
   })
