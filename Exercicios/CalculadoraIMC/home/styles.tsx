@@ -21,6 +21,48 @@ export const styles = StyleSheet.create({
         fontSize:15,
         textAlign: 'center',
     },
+    geral : {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: 15
+    },
+    infos:{
+      height: 50,
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop : 50,
+      gap: 5
+    },
+    textinfos:{
+      color: '#fff',
+      fontSize:15,
+      marginRight: 75
+    },
+    input : {
+      height : 50,
+      width: 150,
+      backgroundColor:'#fff',
+      color : '#967ADC',
+      borderRadius: 3,
+      fontSize: 25,
+      padding: 10,
+      textAlign: 'center',
+    },
+    bottom: {
+      marginLeft:10,
+      height : 50,
+      width: 334,
+      backgroundColor:'#fff',
+      borderRadius: 3,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    textbottom : {
+      fontSize: 20, fontWeight: 'bold',
+      color : '#967ADC',
+    },
     main : {
         padding:20, 
         backgroundColor: '#fdfdff',
@@ -31,7 +73,7 @@ export const styles = StyleSheet.create({
       },
       textmain: {
         color: '#967ADC',
-        fontSize:14,
+        fontSize:16,
       },
       textmain2: {
         color: '#8C4FCA',
