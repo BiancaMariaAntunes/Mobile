@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
+import { Pontos } from "../components/pontuacao1";
 
 export default function Home(){
 
@@ -44,24 +45,18 @@ export default function Home(){
             <Text style={styles.uppertxt}>MARCADOR DE TRUCO</Text>
 
             <View style={styles.main}>
-                <View style={styles.pontos}>
-                    <Text style={styles.nos}>NÓS</Text>
-                    <Text style={styles.num}>{pontos1}</Text>
 
-                    <View style={styles.mainbottom}>
-                        <TouchableOpacity style={styles.greenbotton} onPress={addNos}><Text style={styles.bottomtxt}>+1</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.redbotton} onPress={subNos}><Text style={styles.bottomtxt}>-1</Text></TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.pontos}>
-                    <Text style={styles.eles}>ELES</Text>
-                    <Text style={styles.num2}>{pontos2}</Text>
-                    
-                    <View style={styles.mainbottom}>
-                        <TouchableOpacity style={styles.greenbotton} onPress={addEles}><Text style={styles.bottomtxt}>+1</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.redbotton} onPress={subEles}><Text style={styles.bottomtxt}>-1</Text></TouchableOpacity>
-                    </View>
-                </View>
+                <Pontos name = {'Nós'}
+                number={pontos1}
+                onAdd ={ () => addNos()}
+                onSub={() => subNos()}
+                ></Pontos>
+                
+                <Pontos name = {'Eles'}
+                number={pontos2}
+                onAdd ={ () => addEles()}
+                onSub={() => subEles()}
+                ></Pontos>
 
             </View>
 
@@ -71,3 +66,23 @@ export default function Home(){
 
     )
 }
+
+/*                <View style={styles.pontos}>
+                    <Text style={styles.nos}>NÓS</Text>
+                    <Text style={styles.num}>{pontos1}</Text>
+
+                    <View style={styles.mainbottom}>
+                        <TouchableOpacity style={styles.greenbotton} onPress={addNos}><Text style={styles.bottomtxt}>+1</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.redbotton} onPress={subNos}><Text style={styles.bottomtxt}>-1</Text></TouchableOpacity>
+                    </View>
+                </View>
+                
+                                <View style={styles.pontos}>
+                    <Text style={styles.eles}>ELES</Text>
+                    <Text style={styles.num2}>{pontos2}</Text>
+                    
+                    <View style={styles.mainbottom}>
+                        <TouchableOpacity style={styles.greenbotton} onPress={addEles}><Text style={styles.bottomtxt}>+1</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.redbotton} onPress={subEles}><Text style={styles.bottomtxt}>-1</Text></TouchableOpacity>
+                    </View>
+                </View>*/
