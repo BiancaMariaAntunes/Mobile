@@ -13,8 +13,9 @@ export default function Main(){
     const [primeiro, setPrimeiro] = useState(0);
     const [segundo, setSegundo] = useState(0);
     const [sinal, setSinal] = useState('');
-    const [resposta, setResposta] = useState(0);
+    const [resposta, setResposta] = useState('');
     const [respostacerta, setRespostaCerta] = useState(0);
+    const [valor, setValor] = useState(0);
     
 
     function gerarNumeroAleatorio(max: number, min: number) {
@@ -32,6 +33,13 @@ export default function Main(){
         setPrimeiro(gerarNumeroAleatorio(1,100)),
         setSegundo(gerarNumeroAleatorio(1,100)),
         sortearSimboloMatematico()
+        resetainput()
+    }
+
+    function resetainput(){
+        setValor(0)
+        setResposta('')
+        setRespostaCerta(0)
     }
 
     function reseta(){
@@ -41,24 +49,27 @@ export default function Main(){
       setPrimeiro(0),
       setSegundo(0),
       setSinal('')
-      setResposta(0)
     }
 
-    function calcula(){
-        if (sinal == '-'){
-            setRespostaCerta(primeiro - segundo)
-        }else if (sinal == '+'){
-            setRespostaCerta(primeiro + segundo)
-        }else if (sinal == '*'){
-            setRespostaCerta(primeiro * segundo)
-        }else if (sinal == '/'){
-            setRespostaCerta(primeiro / segundo)
+    const calcularRespostaCorreta = (primeiro: number, segundo: number, sinal: string) => {
+        switch (sinal) {
+          case '+':
+            return primeiro + segundo;
+          case '-':
+            return primeiro - segundo;
+          case '*':
+            return primeiro * segundo;
+          case '/':
+            return primeiro / segundo;
+          default:
+            return 0;
         }
-    }
+      };
 
     function valida(){
-        calcula()
-        if (resposta == respostacerta){
+        setRespostaCerta(calcularRespostaCorreta(primeiro, segundo, sinal))
+        setValor(parseFloat(resposta))
+        if (valor === respostacerta){
             setPontos(pontos + 10),
             setCertas(certas + 1),
             Alert.alert('Você Acertou', `Deseja uma nova conta?`, 
@@ -73,11 +84,12 @@ export default function Main(){
                 }
             ]
             )
-        }else if (resposta != respostacerta){
+        }else{
             setPontos(pontos - 5),
             setErradas(erradas + 1)
+            resetainput()
         }
-        setResposta(0)
+
     }
 
     return(
@@ -92,7 +104,8 @@ export default function Main(){
             number={segundo}
             sinal={sinal}
             valida={() => valida()}
-            onchange={() => setResposta}/>
+            onchange={setResposta}
+            value={resposta}/>
 
             <TouchableOpacity  style={styles.button} onPress={reseta}>
                 <Text style={styles.textbutton}>Novo Jogo</Text>

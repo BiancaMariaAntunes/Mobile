@@ -6,7 +6,8 @@ type Props ={
     valida: () => void,
     sinal : string,
     number : number,
-    onchange: () => void,
+    onchange: React.Dispatch<React.SetStateAction<string>>;
+    value : string
 }
 
 export default function Meio(props : Props){
@@ -29,7 +30,7 @@ export default function Meio(props : Props){
             <Text style={styles.text}>Informe sua resposta</Text>
 
             <View style={styles.botoes}>
-                <TextInput style={styles.input} onChangeText={props.onchange} />
+                <TextInput style={styles.input} onChangeText={props.onchange} value={props.value} keyboardType="numeric"/>
 
                 <TouchableOpacity style={styles.button} onPress={props.valida}>
                     <Text style={styles.textbutton}>Validar</Text>
