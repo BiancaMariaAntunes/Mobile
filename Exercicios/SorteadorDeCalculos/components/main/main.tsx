@@ -33,7 +33,6 @@ export default function Main(){
         setPrimeiro(gerarNumeroAleatorio(1,100)),
         setSegundo(gerarNumeroAleatorio(1,100)),
         sortearSimboloMatematico()
-        resetainput()
     }
 
     function resetainput(){
@@ -70,13 +69,14 @@ export default function Main(){
         setRespostaCerta(calcularRespostaCorreta(primeiro, segundo, sinal))
         setValor(parseFloat(resposta))
         if (valor === respostacerta){
-            setPontos(pontos + 10),
-            setCertas(certas + 1),
             Alert.alert('Você Acertou', `Deseja uma nova conta?`, 
             [
                 {
                     text: 'Sim',
-                    onPress: () => sorteia()
+                    onPress: () => {sorteia(),
+                        setPontos(pontos + 10),
+                        setCertas(certas + 1)
+                        setResposta("")}
                 },
                 {
                     text: 'Não',
@@ -87,7 +87,6 @@ export default function Main(){
         }else{
             setPontos(pontos - 5),
             setErradas(erradas + 1)
-            resetainput()
         }
 
     }
