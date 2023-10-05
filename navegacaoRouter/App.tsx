@@ -4,10 +4,13 @@ import { Home } from './src/screens/Home';
 import { Register } from './src/screens/Register';
 import { Result } from './src/screens/Result';
 import { Routes } from './src/routes';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
+
       <Routes/>
+
   );
 }
 
