@@ -7,6 +7,7 @@ import { styles } from "./styles";
 export function Result(){
 
     type RouteParams ={
+        valorcarro : string
         nome : string
         carro: string
         idade : string
@@ -29,6 +30,7 @@ export function Result(){
     const {carro} = route.params as RouteParams
     const {idade} = route.params as RouteParams
     const {ano} = route.params as RouteParams
+    const {valorcarro} = route.params as RouteParams
 
     useEffect(() => {
         calculaTotal();
@@ -41,6 +43,17 @@ export function Result(){
 
     const idadeInt = parseFloat(idade)
     const anoInt = parseFloat(ano)
+    const valorCarro = parseFloat(valorcarro)
+
+    function calcularBase(){
+        var valorbase = 1000
+        if (valorCarro > 100000){
+            valorbase = 2000
+        } else if (valorCarro >= 50000 && valorCarro <= 100000){
+            valorbase = 1500
+        }
+        return valorbase 
+    }
 
     function calculaSeguroIdade(result : number){
         var valorSeg = 0
@@ -74,14 +87,18 @@ export function Result(){
         return valorSegAno
     }
     function calculaTotal(){
-        var valorTotal = base;
+        
+        var valorBase = calcularBase()
+
+        var valorTotal = valorBase;
 
         var valorPorIdade = calculaSeguroIdade(valorTotal);
         valorTotal = valorTotal + valorPorIdade;
     
         var valorPorAno = calculaSeguroAno(valorTotal);
         valorTotal = valorTotal + valorPorAno;
-    
+        
+        setBase(valorBase)
         setValorseguro(valorPorIdade);
         setValorseguroAno(valorPorAno);
         setResult(valorTotal);

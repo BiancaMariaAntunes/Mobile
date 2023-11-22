@@ -10,9 +10,10 @@ export declare global {
             data : {
                 nome : string
                 valor : number 
-                idade : string  
+                idade : string 
             }
             result : {
+                valorcarro : string
                 idade : string 
                 nome : string
                 carro : string

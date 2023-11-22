@@ -8,6 +8,7 @@ import { styles } from "./styles";
 export function Data(){
 
     type RouteParams ={
+        valorcarro : string
         idade: string
         nome : string
         valor : number
@@ -18,7 +19,7 @@ export function Data(){
     const navigation = useNavigation()
 
     function handleNext(){
-        navigation.navigate('result', {nome, idade, carro, ano, valor : 20})
+        navigation.navigate('result', {valorcarro, nome, idade, carro, ano, valor : 20})
     }
     function handleBack(){
         navigation.goBack()
@@ -28,7 +29,7 @@ export function Data(){
     
     const [carro, setCarro] = useState('');
     const [ano, setAno] = useState('');
-
+    const [valorcarro, setValorcarro] = useState('');
  
     return(
         <SafeAreaView>
@@ -46,6 +47,8 @@ export function Data(){
                         <TextInput value={carro} onChangeText={setCarro} style={styles.input}/>
                         <Text style={styles.textinput}>Qual o ano do seu carro?</Text>
                         <TextInput value={ano} onChangeText={setAno} style={styles.input} keyboardType = 'numeric'/>
+                        <Text style={styles.textinput}>Qual o valor do seu carro?</Text>
+                        <TextInput value={valorcarro} onChangeText={setValorcarro} style={styles.input} keyboardType = 'numeric'/>
                     </View>
 
                     <TouchableOpacity style={styles.button} onPress={handleNext} >

@@ -55,8 +55,8 @@ export const styles = StyleSheet.create({
     main:{
         alignItems: 'center',
         padding: 10,
-        gap: 70,
-        marginTop: 90
+        gap: 40,
+        marginTop: 50
     },
     viewinput: {
         gap: 13,
