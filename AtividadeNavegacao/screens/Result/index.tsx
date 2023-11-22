@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./styles";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export function Result(){
 
@@ -40,10 +41,12 @@ export function Result(){
     const [result, setResult] = useState(0);
     const [valorseguro, setValorseguro] = useState(0);
     const [valorseguroano, setValorseguroAno] = useState(0);
+    const [sinaldolar, setSinaldolar] = useState("");
 
     const idadeInt = parseFloat(idade)
     const anoInt = parseFloat(ano)
     const valorCarro = parseFloat(valorcarro)
+    const dolar = 5.0
 
     function calcularBase(){
         var valorbase = 1000
@@ -102,7 +105,22 @@ export function Result(){
         setValorseguro(valorPorIdade);
         setValorseguroAno(valorPorAno);
         setResult(valorTotal);
+        setSinaldolar("$")
+    }
     
+    function CalculaEmDolar(){
+        
+        var valorBaseEmDolar = base / dolar
+        var valorResultadoEmDolar = result / dolar
+        var valorPorIdadeDolar = valorseguro / dolar;
+        var valorPorAnoDolar = valorseguroano / dolar;
+
+        setBase(valorBaseEmDolar)
+        setResult(valorResultadoEmDolar);
+        setValorseguro(valorPorIdadeDolar);
+        setValorseguroAno(valorPorAnoDolar);
+        setSinaldolar("US$")
+        
     }
 
 
@@ -118,11 +136,24 @@ export function Result(){
                     <Text style={styles.textinput}>Olá {nome}, fizemos um orçamento para seu veículo {carro} </Text>
 
                     <View style={styles.viewinput}>
-                        <View style={styles.grade}><Text style={styles.textgrade}>Base</Text><Text style={styles.textgrade}>{base}</Text></View>
-                        <View style={styles.grade}><Text style={styles.textgrade}>por idade</Text><Text style={styles.textgrade}>{valorseguro}</Text></View>
-                        <View style={styles.grade}><Text style={styles.textgrade}>por ano</Text><Text style={styles.textgrade}>{valorseguroano}</Text></View>
+                        <View style={styles.grade}><Text style={styles.textgrade}>Base</Text><Text style={styles.textgrade}>{base} {sinaldolar}</Text></View>
+                        <View style={styles.grade}><Text style={styles.textgrade}>por idade</Text><Text style={styles.textgrade}>{valorseguro} {sinaldolar}</Text></View>
+                        <View style={styles.grade}><Text style={styles.textgrade}>por ano</Text><Text style={styles.textgrade}>{valorseguroano} {sinaldolar}</Text></View>
                     </View>
-                    <View style={styles.grade} ><Text style={styles.textgrade}>Total</Text><Text style={styles.textgrade}>{result}</Text></View>
+                    <View style={styles.grade} ><Text style={styles.textgrade}>Total</Text><Text style={styles.textgrade}>{result} {sinaldolar}</Text></View>
+
+                    <BouncyCheckbox
+                        onPress={(isChecked : boolean) => {
+                            if (isChecked) {
+                                CalculaEmDolar()
+                            } else{
+                                calculaTotal()
+                            }
+                        }}
+                        text="Valor em Dólar"
+                        fillColor="black"
+                        unfillColor="white"
+                        />
 
                     <TouchableOpacity style={styles.button} onPress={handleNext}>
                                 <Text style={styles.textbutton}>Finalizar</Text>
