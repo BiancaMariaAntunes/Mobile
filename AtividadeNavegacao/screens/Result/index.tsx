@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./styles";
@@ -9,11 +9,9 @@ export function Result(){
     type RouteParams ={
         nome : string
         carro: string
-        result : number
-        valorseguroano : number
-        valorseguro : number
-        base : number
+        idade : string
         valor : number
+        ano : string
     }
 
     const route = useRoute()
@@ -28,11 +26,67 @@ export function Result(){
     }
 
     const {nome} = route.params as RouteParams
-    const {valorseguroano} = route.params as RouteParams
-    const {valorseguro} = route.params as RouteParams
-    const {result} = route.params as RouteParams
-    const {base} = route.params as RouteParams
     const {carro} = route.params as RouteParams
+    const {idade} = route.params as RouteParams
+    const {ano} = route.params as RouteParams
+
+    useEffect(() => {
+        calculaTotal();
+      }, []);
+    
+    const [base, setBase] = useState(1000);
+    const [result, setResult] = useState(0);
+    const [valorseguro, setValorseguro] = useState(0);
+    const [valorseguroano, setValorseguroAno] = useState(0);
+
+    const idadeInt = parseFloat(idade)
+    const anoInt = parseFloat(ano)
+
+    function calculaSeguroIdade(result : number){
+        var valorSeg = 0
+        if (idadeInt < 22){
+            valorSeg = result * 0.2
+
+        } else if(idadeInt >= 22 && idadeInt <= 28){
+            valorSeg = result * 0.18
+ 
+        } else if (idadeInt >= 29){
+            valorSeg = result * -0.15
+
+        }
+        return valorSeg
+    }
+    function calculaSeguroAno(result : number){
+        var valorSegAno = 0
+        if (anoInt < 2000){
+            valorSegAno = result * 0.3
+
+        } else if (anoInt >= 2000 && anoInt <= 2009){
+            valorSegAno = result * 0.15
+   
+        } else if (anoInt >= 2010 && anoInt <= 2015){
+            valorSegAno = 0
+
+        } else {
+            valorSegAno = result * 0.1
+  
+        }
+        return valorSegAno
+    }
+    function calculaTotal(){
+        var valorTotal = base;
+
+        var valorPorIdade = calculaSeguroIdade(valorTotal);
+        valorTotal = valorTotal + valorPorIdade;
+    
+        var valorPorAno = calculaSeguroAno(valorTotal);
+        valorTotal = valorTotal + valorPorAno;
+    
+        setValorseguro(valorPorIdade);
+        setValorseguroAno(valorPorAno);
+        setResult(valorTotal);
+    
+    }
 
 
     return(

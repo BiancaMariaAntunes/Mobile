@@ -47,7 +47,7 @@ export function Register(){
                                 <Text style={styles.textbutton}>Próximo</Text>
                     </TouchableOpacity>
 
-
+                  
                 </View>
 
                 <TouchableOpacity onPress={handleBack}>

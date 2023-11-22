@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent:'space-between',
-        padding: 10
+        padding: 5 
     },
     text1 : { 
         fontSize: 36,      
@@ -52,9 +52,9 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'white',
         marginLeft: 5,
+
     },
     main:{
-        flex: 1,
         alignItems: 'center',
         padding: 10,
         gap: 70,

@@ -13,10 +13,6 @@ export declare global {
                 idade : string  
             }
             result : {
-                valorseguroano: number
-                valorseguro : number
-                base : number
-                result : number
                 idade : string 
                 nome : string
                 carro : string

@@ -7,15 +7,13 @@ export const styles = StyleSheet.create({
     },
     main:{
         alignItems: 'center',
-        flex: 1,
         padding: 10
     },
     div : {
-        flex:1,
         justifyContent:'center',
         alignItems: 'center',
         height: 500, 
-
+        marginTop: 10
     },
     text1 : { 
         fontSize: 36,      
@@ -49,6 +47,7 @@ export const styles = StyleSheet.create({
         color: '#5987CC',
         fontSize: 18,      
         fontWeight:'bold',
+        marginTop: 50
     },
     button: {
         height : 50,
