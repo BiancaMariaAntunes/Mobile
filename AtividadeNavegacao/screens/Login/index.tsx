@@ -18,7 +18,7 @@ export function Login(){
     return(
 
         <SafeAreaView >
-            <LinearGradient colors={['#5374B6', '#B6535300']} style={styles.linear}>
+            <LinearGradient colors={['#5374B6', '#B65353']} style={styles.linear}>
 
                 <View style={styles.main}>
                     

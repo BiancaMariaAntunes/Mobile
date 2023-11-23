@@ -48,7 +48,7 @@ export function Data() {
 
   return (
     <SafeAreaView>
-      <LinearGradient colors={["#5374B6", "#B6535300"]} style={styles.linear}>
+      <LinearGradient colors={["#5374B6", "#B65353"]} style={styles.linear}>
         <Text style={styles.text1}>SIMULACAR</Text>
 
         <View style={styles.main}>
