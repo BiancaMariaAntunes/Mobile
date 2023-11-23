@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
         color: '#5987CC',
         fontSize: 18,      
         fontWeight:'bold',
+        marginRight: 10
     },
     button: {
         height : 50,

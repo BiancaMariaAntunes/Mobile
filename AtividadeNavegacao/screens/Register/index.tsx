@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./styles";
+import { TextInputMask } from "react-native-masked-text";
 
 
 export function Register(){
@@ -26,6 +27,7 @@ export function Register(){
     const {nome} = route.params as RouteParams
 
     const [idade, setIdade] = useState('');
+    const [cpf, setCPF] = useState('');
 
     return(
         <SafeAreaView>
@@ -41,6 +43,14 @@ export function Register(){
                     <View style={styles.viewinput}>
                         <Text style={styles.textinput}>Qual sua idade?</Text>
                         <TextInput value={idade} onChangeText={setIdade} style={styles.input} keyboardType = 'numeric'/>
+                        <Text style={styles.textinput}>Qual seu CPF?</Text>
+                        <TextInputMask
+                            type={'cpf'}
+                            value={cpf}
+                            onChangeText={setCPF}
+                            style={styles.input}
+                            keyboardType = 'numeric'
+                            />
                     </View>
 
                     <TouchableOpacity style={styles.button} onPress={handleNext}>

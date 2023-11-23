@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent:'center',
         alignItems: 'center',
-        marginBottom:50
+        marginBottom:10
     },
     textbutton : { 
         color: 'white',
@@ -57,11 +57,11 @@ export const styles = StyleSheet.create({
     main:{
         alignItems: 'center',
         padding: 10,
-        gap: 70,
-        marginTop: 120
+        gap: 40,
+        marginTop: 80
     },
     viewinput: {
         gap: 13,
-        marginBottom: 120
+        marginBottom: 100
     },
 })

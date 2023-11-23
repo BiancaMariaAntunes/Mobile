@@ -11,12 +11,13 @@ export const styles = StyleSheet.create({
         fontSize: 36,      
         fontWeight:'bold',
         color:'white',
-        marginTop: 70
+        marginTop: 60
     },
     text2 : {
         color: '#5987CC',
         fontSize: 18,      
         fontWeight:'bold',
+        marginRight: 10,
     },
     button: {
         height : 50,
@@ -26,13 +27,15 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent:'center',
         alignItems: 'center',
-        marginBottom:50
+        marginBottom:30,
+        marginLeft: 10
     },
     textbutton : { 
         color: 'white',
         fontSize: 22,      
         fontWeight:'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+
     },
     input:{
         height : 50,
@@ -44,22 +47,22 @@ export const styles = StyleSheet.create({
         color: '#6F6B73',
         fontWeight:'bold',
         padding: 10,
-        fontSize: 25
+        fontSize: 25,
+        marginBottom : 5
     },
     textinput : {
         fontSize: 18,      
         fontWeight:'bold',
         color:'white',
-        marginLeft: 5,
+        marginBottom:8
     },
     main:{
         alignItems: 'center',
-        padding: 10,
-        gap: 40,
-        marginTop: 50
+        marginTop: 10,
+        gap : 10
     },
     viewinput: {
-        gap: 13,
-        marginBottom: 50,
+        gap : 5,
+        marginBottom: 100,
     },
 })
