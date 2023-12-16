@@ -1,80 +1,62 @@
-import { useEffect, useState } from 'react';
-import './App.css'
-import Items from './components/Items';
+import React, { useState, useEffect } from 'react';
 
-function App() {
-
-  const [valor, setValor] = useState(0);
-  const [initialCurrency, setInitialCurrency] = useState("");
-  const [finalCurrency, setFinalCurrency] = useState("");
-  const [listCurrencies, setListCurrencies] = useState([])
-  const [conversionResult, setConversionResult] = useState(null);
+const App = () => {
+  const [initialCurrency, setInitialCurrency] = useState('USD')
+  const [finalCurrency, setFinalCurrency] = useState('EUR')
+  const [result, setResult] = useState('')
 
   useEffect(() => {
-
-    fetch('https://api.currencylayer.com/list')
-              .then(res=>res.json())
-              .then(json=>setListCurrencies(json.symbols));
-            
-  }, [])
-
-  useEffect(() => {
-    const convertCurrency = async () => {
+    const handleConverter = async () => {
       try {
-        const value = valor ? `${valor}` : '';
-        const from = initialCurrency ? `${initialCurrency}` : '';
-        const to = finalCurrency ? `${finalCurrency}` : '';
-
         const response = await fetch(
-          `https://api.currencylayer.com/convert?access_key=0866620e8e2c120aa9e077b0cb0f0404&from=${from}&to=${to}&amount=${value}`
+          `https://api.currencylayer.com/live?access_key=cc1742cd6768db7eaef688a67a55e286&currencies=${initialCurrency}&source=${finalCurrency}&format=1`
         );
-        const json = await response.json();
 
-        setConversionResult(json.result);
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success) {
+            const rates = data.quotes
+            const result = Object.entries(rates).map(([moeda, taxa]) => ({ moeda, taxa }))
+            setResult(result)
+          }
+        } 
       } catch (error) {
-        setConversionResult('Erro ao converter');
+        console.error('Erro na solicitação:', error.message)
       }
-    };
-    convertCurrency();
-  }, [valor, initialCurrency, finalCurrency]);
+    }
+
+    if (initialCurrency && finalCurrency) {
+      handleConverter()
+    }
+  }, [initialCurrency, finalCurrency])
+
 
   return (
-    <>
-      <header>
-        <div>
-          <p>Selecione a unidade inicial da moeda: </p>
-          <select onChange={(event) => setInitialCurrency(event.target.value) }>
-            <option value="" defaultValue>Nenhum</option>
-            <option value="BRL">Real</option>
-            <option value="USD">Dólar Americano</option>
-            <option value="AED">Dirham dos Emirados Árabes Unidos</option>
-            <option value="CAD">Dólar Canadense</option>
-          </select>
-        </div>
-        <div>
-          <p>Selecione a unidade final da moeda: </p>
-          <select onChange={(event) => setFinalCurrency(event.target.value) }>
-            <option value="" defaultValue>Nenhum</option>
-            <option value="BRL">Real</option>
-            <option value="USD">Dólar Americano</option>
-            <option value="AED">Dirham dos Emirados Árabes Unidos</option>
-            <option value="CAD">Dólar Canadense</option>
-          </select>
-        </div>
-        <p>Digite o valor que deseja converter: </p>
-        <input type="number" value={valor} onChange={(event) => setValor(event.target.value) }/>
-
-
-
-      </header>
-
+    <div>
+      <h1>Currency Converter</h1>
       <div>
-        <p>{conversionResult}</p>
+        <label>Moeda Base:</label>
+        <input type="text" value={initialCurrency} onChange={(e) => setInitialCurrency(e.target.value)} />
+      </div>
+      <div>
+        <label>Moedas Finais (separadas por vírgula):</label>
+        <input type="text" value={finalCurrency} onChange={(e) => setFinalCurrency(e.target.value)} />
       </div>
 
-
-    </>
+      {result && (
+        <div>
+          <h2>Resultados:</h2>
+          {result.map(({ moeda, taxa }) => (
+            <div key={moeda}>
+              <p>
+                {moeda}: {taxa}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
-export default App
+export default App;
